@@ -6,7 +6,7 @@ Introduction:
 
 Tools used:
 
-Python(tweepy, pymongo, NLTK, re, matplotlib, wordcloud), MongoDB, D3.js, Leaflet.js, Google Charts
+Python(Pandas, tweepy, pymongo, NLTK, re, matplotlib, wordcloud), MongoDB, D3.js, Dimple.js, Leaflet.js, Google Charts
 
 Website:
 
