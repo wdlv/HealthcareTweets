@@ -5,7 +5,6 @@ Created on Sat May 22 18:20:54 2017
 
 @author: Hongwei Liu
 """
-
 from pymongo import MongoClient
 import re
 import json
@@ -17,6 +16,7 @@ from nltk.stem import WordNetLemmatizer
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from os import path
+import pandas
 
 # Connect to MongoDB client
 MONGO_HOST= 'mongodb://localhost:27017/'
@@ -34,8 +34,6 @@ for tweet in db.twitter_search_healthcare.find():
 tweet_collection = []
 
 for tweet in db.twitter_search_healthcare.find():
-    pp.pprint(tweet)
-
     # Get rid of website address in tweets
     tweet_collection.append(re.sub(r'https\S+', '', tweet[u'text']))
 
@@ -57,11 +55,35 @@ for line in hashtag:
         word = stemmer.lemmatize(word)
         hashtag_dict[word] += 1
 
-# Sort dictionary according to dict's value; Present top 25% words
+# Sort dictionary according to dict's value; Present top 1% words
+# Build a dataframe to record keywords and their frequency
+word_book = pd.DataFrame(columns=['Keyword', 'Frequency'])
+
+# Create a sorted dictionary according to its item value
 sorteddic = sorted(hashtag_dict.items(), key=lambda x:x[1], reverse=True)
-for pair in sorteddic[0:len(sorteddic)/4]:
+
+# Iterate through top 1/160 items
+for pair in sorteddic[0:len(sorteddic)/160]:
+    # Build a new row to be interted in the dataframe later
+    newrow = [pair[0], pair[1]]
+    # Add the row to the first one and reset index
+    word_book.loc[-1] = newrow
+    word_book = word_book.sort_index().reset_index(drop=True)
+
+    # Print out content to compare with dataframe
     print "Keyword: ", pair[0], "| number: ", pair[1]
 
+# Sort the index to make sure dataframe is sorted according to column Frequency's value
+word_book = word_book.sort_values('Frequency', ascending=False).reset_index(drop=True)
+
+# Transform data for D3.js plotting dirrectly on the website
+# You can also use pandas's to_csv to create a csv file and let D3.js read it when loading
+d3_data = []
+for index, row in word_book.iterrows():
+    # For convenience, I transform data to [{}, {}...] format for D3.js plotting
+    d3_data.append({"Keyword":row['Keyword'], "Frequency":row['Frequency']})
+
+#######################
 # Construct world cloud
 # Get current address
 d = path.dirname(__file__)
