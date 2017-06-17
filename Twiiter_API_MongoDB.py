@@ -21,10 +21,17 @@ MONGO_HOST= 'mongodb://localhost:27017/'
 WORDS = ['#healthcare', '#health']
 
 # Twitter API setting. Create a new app on https://apps.twitter.com. Get the following keys, tokens and secret.
+<<<<<<< HEAD
 consumer_key = 'Su7LAmUTqvXro2vztKlzA49bq'
 consumer_secret = 'hoOms1sMxgOrNE55hp1bOgLS1jcw3QneO61RdRw0JHoGxTGAf8'
 access_token = '352994162-v7PmyewhI8XTQ0S48hJh9z4rC0COr2weYzrbJKXA'
 access_secret = 'TSm7YjstFAd8prnGbnFcNjb9MwMsxIsoDDVmg8J2bPLjN'
+=======
+consumer_key = 'Your key'
+consumer_secret = 'Your secret'
+access_token = 'Your token'
+access_secret = 'Your secret'
+>>>>>>> 0a49ab09b68a225df89f85590ed70461aca61aab
 
 #This is a class provided by tweepy to access the Twitter Streaming API.
 class StreamListener(tweepy.StreamListener):     
@@ -73,4 +80,8 @@ auth.set_access_token(access_token, access_secret)
 listener = StreamListener(api=tweepy.API(wait_on_rate_limit=True)) 
 streamer = tweepy.Stream(auth=auth, listener=listener)
 print("Tracking: " + str(WORDS))
+<<<<<<< HEAD
 streamer.filter(track=WORDS)
+=======
+streamer.filter(track=WORDS)
+>>>>>>> 0a49ab09b68a225df89f85590ed70461aca61aab

@@ -55,7 +55,10 @@ for line in hashtag:
         word = stemmer.lemmatize(word)
         hashtag_dict[word] += 1
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0a49ab09b68a225df89f85590ed70461aca61aab
 # Sort dictionary according to dict's value; Present top 1% words
 # Build a dataframe to record keywords and their frequency
 word_book = pd.DataFrame(columns=['Keyword', 'Frequency'])
@@ -84,7 +87,11 @@ for index, row in word_book.iterrows():
     # For convenience, I transform data to [{}, {}...] format for D3.js plotting
     d3_data.append({"Keyword":row['Keyword'], "Frequency":row['Frequency']})
 
+<<<<<<< HEAD
 ###########################
+=======
+#######################
+>>>>>>> 0a49ab09b68a225df89f85590ed70461aca61aab
 # Construct world cloud
 # Get current address
 d = path.dirname(__file__)
