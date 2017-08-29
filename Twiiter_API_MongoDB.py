@@ -14,7 +14,7 @@ from pymongo import MongoClient
 ### Great thanks to Marco Bonzanini's book - Mastering Social Media Mining with Python
 ### Many codes are borrowed from the book.
 
-# Assume you have mongoDB installed locally and a database called 'TwitterDB'
+# Assume you have mongoDB installed locally
 MONGO_HOST= 'mongodb://localhost:27017/'  
 
 # Words to track
