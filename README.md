@@ -10,6 +10,6 @@ Python(Pandas, tweepy, pymongo, NLTK, re, matplotlib, wordcloud), MongoDB, D3.js
 
 ## Demo:
 
-![demo](https://github.com/woodenleaves/Healthcare_Tweets/raw/master/images/twitter_health.png)
+![demo](https://github.com/woodenleaves/Healthcare_Tweets/raw/master/twitter_health.png)
 
 http://woodenleaves.com/pages/healthcare_tweet.html
